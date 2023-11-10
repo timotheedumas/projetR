@@ -7,6 +7,7 @@ library(dplyr)
 library(leaflet)
 library(rjson)
 library(sf)
+library(leaflet)
 
 
 data_set_ufo <- read.csv("clean-ufo-sightings-transformed.csv",sep=",",encoding="UTF-8")
@@ -18,7 +19,7 @@ ui <- fluidPage(
   
   
 
-  p("minAnnee", align = "right"),
+  p("minYear", align = "right"),
   
   sidebarLayout(
     mainPanel(
@@ -38,7 +39,12 @@ ui <- fluidPage(
                 )
     ),
   textOutput("min_value_output"),
-  textOutput("columns")
+  textOutput("columns"),
+  mainPanel(
+    tabsetPanel(type = "tabs",
+                tabPanel("Map", leafletOutput("ufoMap"))
+    )
+  )
     
 )
 

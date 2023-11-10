@@ -5,7 +5,7 @@ library(plotly)
 library(ggplot2)
 library(shiny)
 library(dplyr)
-
+library(leaflet)
 
 
 data_set_ufo <- read.csv("clean-ufo-sightings-transformed.csv",sep=",",encoding="UTF-8")
