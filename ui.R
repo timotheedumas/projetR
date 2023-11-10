@@ -9,37 +9,37 @@ library(rjson)
 library(sf)
 
 
-data_set_cars <- read.csv("Clean_data_pakwheels.csv",sep=",",encoding="UTF-8")
+data_set_ufo <- read.csv("clean-ufo-sightings-transformed.csv",sep=",",encoding="UTF-8")
 
 ui <- fluidPage(
   
   # App title ----
-  titlePanel(h1("Vente de voiture", align = "center")),
+  titlePanel(h1("ufo sightings", align = "center")),
   
-  titlePanel("CSV Data Viewer"),
-  tableOutput("table"),
-  # Sidebar layout with input and output definitions ----
+  
+
+  p("minAnnee", align = "right"),
+  
   sidebarLayout(
-      sidebarPanel("sidebar panel"),
-      mainPanel("main panel")
+    mainPanel(
+      textOutput("selected_year"),
+      plotOutput("histogram")
+      ),
+    sidebarPanel(
+      sliderInput(inputId = "years",
+                  label = "Year",
+                  min = 1910,
+                  max = 2010,
+                  step = 5,
+                  value = 1940,
+                  sep = ""
+                  )
+    
+                )
     ),
-  selectInput("company", label = "Select Company",
-              choices = unique(data_set_cars$Company.Name),
-              selected = NULL, multiple = TRUE),
-  checkboxGroupInput("checkboxGroup", label = "Checkbox",
-                     choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
-                     selected = 1),
-  
-  
-  mainPanel(
-    plotOutput("barplot"),
-    hr(),
-    verbatimTextOutput("value"),
-    hr(),
-    plotOutput("histogram")
+  textOutput("min_value_output"),
+  textOutput("columns")
     
-    
-  )
 )
 
 
