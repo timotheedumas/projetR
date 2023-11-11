@@ -12,22 +12,22 @@ server <- function(input, output) {
   
   
   selectedYearHistogram <- reactive({
-    data_set_ufo %>% filter(Year == input$years)
+    data_set_ufo %>% filter(Year == input$years) %>%
+      mutate(
+        Duration_Category = cut(
+          length_of_encounter_seconds,
+          breaks = c(-1, 10, 60, 300, 1800, 7200, 86400, Inf),
+          labels = c('< 10 sec', '10 sec - 1 min', '1 - 5 min', '5 - 30 min', '30 min - 2h', '2h - 1 day', '> 1 day'),
+          include.lowest = TRUE
+        )
+      )
   })
   
   output$histogram <- renderPlot({
-    ggplot(selectedYearHistogram(),
-           aes(x = length_of_encounter_minutes, stat = "count")) +
-      geom_histogram(
-        bins = 20,
-        binwidth = max(selectedYearHistogram()$length_of_encounter_minutes) / 50,
-        fill = "blue",
-        color = "black",
-        alpha = 0.7
-      ) +
-      labs(title = "Histogram of Encounter Length", x = "Length (minutes)", y = "Frequency") + coord_cartesian(xlim = c(0, max(
-        selectedYearHistogram()$length_of_encounter_minutes
-      )))
+    ggplot(selectedYearHistogram(), aes(x = Duration_Category, fill = Duration_Category)) +
+      geom_bar() +
+      scale_fill_manual(values = c('< 10 sec' = 'blue', '10 sec - 1 min' = 'blue', '1 - 5 min' = 'blue', '5 - 30 min' = 'blue', '30 min - 2h' = 'blue', '2h - 1 day' = 'blue', '> 1 day' = 'blue')) +
+      labs(title = "Histogram of Encounter Duration Categories", x = "Duration Category", y = "Frequency")
   })
   
   
