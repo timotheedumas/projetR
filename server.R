@@ -56,7 +56,7 @@ server <- function(input, output, session) {
           '> 1 day' = '#3498db'
         )
       ) +
-      labs(title = "Histogram of Encounter Duration Categories", x = "Duration Category", y = "Frequency")
+      labs(title = "Histogram of Encounter Durations ", x = "Duration", y = "Frequency")
   })
   
   #filter the  year based on user input
@@ -122,7 +122,7 @@ server <- function(input, output, session) {
         shape_counts(),
         labels = names(shape_counts()),
         main = paste(
-          "Pie Chart of the repartition of the UFO shape",
+          "Pie Chart of the repartition of the UFO shapes",
           input$year_for_pie_shapes
         )
       )
@@ -181,7 +181,7 @@ server <- function(input, output, session) {
         stroke = FALSE,
         options = popupOptions(closeButton = FALSE)
       )
-   
+    
   })
   
 }

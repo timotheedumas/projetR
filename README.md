@@ -1,8 +1,28 @@
 # Dashboard sur les apparitions d'UFOs depuis 1910
 
+Ce dashboard a été réalisé par Timothée DUMAS et Yannis TUMELIN. 
+
 ## La base de données
 
-La base de données contient des informations sur les UFOs (objets volants non identifiés) recensés entre 1910 et 2014. Elle comprend, entre autres, leur date d'apparition, lieu d'apparition, durée, forme et description.
+La base de données contient des informations sur les UFOs (objets volants non identifiés) recensés entre 1910 et 2014. L'organisation qui à produit ce jeu de donnée est NUFORC. Les colonnes présentes dans le CSV téléchargé sont : 
+- Date_time
+- date_documented
+- Year
+- Month
+- Hour
+- Season 
+- Country_Code
+- Country
+- Region
+-  Locale
+- latitude
+- longitude
+- UFO_shape
+- length_of_encounter_seconds
+- Encounter_Duration,
+- Description
+
+A l'aide du script clean.py nous retirons les valeurs manquantes ainsi que les colonnes "Encounter_Duration", "Country_Code","Month" et "Locale". Nous calculons à l'aide de la colonne "length_of_encounter_seconds" la durée de la rencontre en minutes.
 
 ## User Guide
 

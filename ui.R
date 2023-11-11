@@ -3,11 +3,8 @@ library(shinydashboard)
 library(tidyverse)
 library(plotly)
 library(ggplot2)
-library(dplyr)
 library(leaflet)
-library(rjson)
-library(sf)
-library(leaflet)
+
 
 
 data_set_ufo <-
