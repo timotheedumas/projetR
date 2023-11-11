@@ -1,6 +1,5 @@
 library(shiny)
 library(shinydashboard)
-library(tidyverse)
 library(plotly)
 library(ggplot2)
 library(leaflet)
@@ -34,6 +33,8 @@ mainPanel(
       )
     ),
     
+    tabPanel("Distribution of the hours of UFO encounters",
+             plotOutput("histogramHours")),
     tabPanel(
       "Pie chart Seasons",
       plotOutput("pieChartSeasons"),

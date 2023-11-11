@@ -40,7 +40,7 @@ server <- function(input, output, session) {
     }
   })
   
-  #plot the histogram
+  #plot the histogram of the durations of encounters
   output$histogram <- renderPlot({
     ggplot(selectedYearHistogram(),
            aes(x = Duration_Category, fill = Duration_Category)) +
@@ -57,6 +57,13 @@ server <- function(input, output, session) {
         )
       ) +
       labs(title = "Histogram of Encounter Durations ", x = "Duration", y = "Frequency")
+  })
+  
+  output$histogramHours <- renderPlot({
+    ggplot(data_set_ufo, aes(x = Hour)) +
+      geom_histogram(binwidth = 1, fill = '#3498db', color = 'black') +
+      labs(title = "Distribution of the hours of observation of the ufo", x = "Hour of the Day", y = "Frequency") +
+      scale_x_continuous(breaks = seq(0, 23, 1))
   })
   
   #filter the  year based on user input
