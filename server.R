@@ -4,7 +4,7 @@ library(leaflet)
 library(scales)
 
 
-server <- function(input, output, session) {
+server <- function(input, output) {
   #load the datas
   data_set_ufo <-
     read.csv("clean-ufo-sightings-transformed.csv",
@@ -59,9 +59,14 @@ server <- function(input, output, session) {
       labs(title = "Histogram of Encounter Durations ", x = "Duration", y = "Frequency")
   })
   
+  #plot the histogram for the distribution of the hours of encounters
   output$histogramHours <- renderPlot({
     ggplot(data_set_ufo, aes(x = Hour)) +
-      geom_histogram(binwidth = 1, fill = '#3498db', color = 'black') +
+      geom_histogram(
+        binwidth = 1,
+        fill = '#3498db',
+        color = 'black'
+      ) +
       labs(title = "Distribution of the hours of observation of the ufo", x = "Hour of the Day", y = "Frequency") +
       scale_x_continuous(breaks = seq(0, 23, 1))
   })

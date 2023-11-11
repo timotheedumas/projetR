@@ -33,8 +33,10 @@ mainPanel(
       )
     ),
     
-    tabPanel("Distribution of the hours of UFO encounters",
-             plotOutput("histogramHours")),
+    tabPanel(
+      "Distribution of the hours of UFO encounters",
+      plotOutput("histogramHours")
+    ),
     tabPanel(
       "Pie chart Seasons",
       plotOutput("pieChartSeasons"),
