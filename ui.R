@@ -7,40 +7,66 @@ library(dplyr)
 library(leaflet)
 library(rjson)
 library(sf)
+library(leaflet)
 
 
-data_set_cars <- read.csv("Clean_data_pakwheels.csv",sep=",",encoding="UTF-8")
+data_set_ufo <-
+  read.csv("clean-ufo-sightings-transformed.csv",
+           sep = ",",
+           encoding = "UTF-8")
 
 ui <- fluidPage(
-  
   # App title ----
-  titlePanel(h1("Vente de voiture", align = "center")),
-  
-  titlePanel("CSV Data Viewer"),
-  tableOutput("table"),
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
-      sidebarPanel("sidebar panel"),
-      mainPanel("main panel")
-    ),
-  selectInput("company", label = "Select Company",
-              choices = unique(data_set_cars$Company.Name),
-              selected = NULL, multiple = TRUE),
-  checkboxGroupInput("checkboxGroup", label = "Checkbox",
-                     choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
-                     selected = 1),
+  titlePanel(h1(
+    "Dashboard to analyse the ufo sightings ", align = "center"
+  )),
   
   
   mainPanel(
-    plotOutput("barplot"),
-    hr(),
-    verbatimTextOutput("value"),
-    hr(),
-    plotOutput("histogram")
+    plotOutput("histogram"),
     
-    
+    sliderInput(
+      inputId = "years",
+      label = "Year",
+      min = min(data_set_ufo$Year),
+      max = max(data_set_ufo$Year),
+      step = 1,
+      value = 1960,
+      sep = ""
+    )
+  ),
+  
+  tags$br(),
+  
+  
+  mainPanel(
+    plotOutput("pieChart"),
+    sliderInput(
+      inputId = "year_for_pie",
+      label = "Year",
+      min = min(data_set_ufo$Year),
+      max = max(data_set_ufo$Year),
+      step = 1,
+      value = 1960,
+      sep = ""
+    )
+  ),
+  mainPanel(tabsetPanel(type = "tabs",
+                        
+                        tabPanel(
+                          "Map", leafletOutput("ufoMap")
+                        )),
+            sidebarPanel(
+                          sliderInput(
+                            inputId = "year_for_map",
+                            label = "Year",
+                            min = min(data_set_ufo$Year),
+                            max = max(data_set_ufo$Year),
+                            step = 1,
+                            value = 1960,
+                            sep = ""
+                          ))
+  
   )
+  
 )
-
-
-
