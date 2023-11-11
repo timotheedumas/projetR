@@ -1,4 +1,3 @@
-
 library(shinydashboard)
 library(tidyverse)
 library(plotly)
@@ -8,7 +7,10 @@ library(dplyr)
 library(leaflet)
 
 
-data_set_ufo <- read.csv("clean-ufo-sightings-transformed.csv",sep=",",encoding="UTF-8")
+data_set_ufo <-
+  read.csv("clean-ufo-sightings-transformed.csv",
+           sep = ",",
+           encoding = "UTF-8")
 
 
 ui <- source("ui.R")
@@ -18,4 +20,3 @@ server <- source("server.R")
 
 
 shinyApp(ui, server)
-

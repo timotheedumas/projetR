@@ -10,43 +10,45 @@ library(sf)
 library(leaflet)
 
 
-data_set_ufo <- read.csv("clean-ufo-sightings-transformed.csv",sep=",",encoding="UTF-8")
+data_set_ufo <-
+  read.csv("clean-ufo-sightings-transformed.csv",
+           sep = ",",
+           encoding = "UTF-8")
 
 ui <- fluidPage(
-  
   # App title ----
-  titlePanel(h1("ufo sightings", align = "center")),
+  titlePanel(h1("Dashboard to analyse the ufo sightings ", align = "center")),
   
   
-
-  p("minYear", align = "right"),
-  
-  sidebarLayout(
-    mainPanel(
-      textOutput("selected_year"),
-      plotOutput("histogram")
-      ),
-    sidebarPanel(
-      sliderInput(inputId = "years",
-                  label = "Year",
-                  min = 1910,
-                  max = 2010,
-                  step = 5,
-                  value = 1940,
-                  sep = ""
+  sidebarLayout(mainPanel(plotOutput("histogram")),
+                sidebarPanel(
+                  sliderInput(
+                    inputId = "years",
+                    label = "Year",
+                    min = min(data_set_ufo$Year),
+                    max = max(data_set_ufo$Year),
+                    step = 5,
+                    value = 1960,
+                    sep = ""
                   )
-    
-                )
-    ),
-  textOutput("min_value_output"),
+                  
+                )),
+  
   textOutput("columns"),
-  mainPanel(
-    tabsetPanel(type = "tabs",
-                tabPanel("Map", leafletOutput("ufoMap"))
-    )
-  )
-    
+  plotOutput("pieChart"),
+  mainPanel(tabsetPanel(type = "tabs",
+                        
+                        tabPanel(
+                          "Map", leafletOutput("ufoMap")
+                        ))),
+  sidebarPanel(sliderInput(
+    inputId = "year_for_map",
+    label = "Year",
+    min = min(data_set_ufo$Year),
+    max = max(data_set_ufo$Year),
+    step = 5,
+    value = 1960,
+    sep = ""
+  ))
+  
 )
-
-
-
