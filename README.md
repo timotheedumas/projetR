@@ -36,11 +36,11 @@ Le but de ce projet est d'analyser et de visualiser les données collectées par
 
 ### Installation 
 
-ouvrer un terminal sur votre machine locale et placer vous dans le répertoire souhaité puis taper cette liste de commandes  :
+ouvrir un terminal sur votre machine locale et placer vous dans le répertoire souhaité puis taper cette liste de commandes  :
 
-- git clone https://github.com/timotheedumas/projetR.git # pour cloner le répertoire git sur votre machin
+- git clone https://github.com/timotheedumas/projetR.git # pour cloner le répertoire git sur votre machine
  
-Avant de continuer vérifier à l'aide votre explorateur de fichiers que tout les fichiers ont bien tous étés téléchargés dans le même dossier. 
+Avant de continuer vérifier à l'aide votre explorateur de fichiers que tout les fichiers ont bien tous été téléchargés dans le même dossier. 
 
 - Ouvrez R studio
 - Installer les packages listés dans le requirement.txt à l'aide de la commande install.packages("nomPackage")
@@ -113,7 +113,7 @@ Le code  dans cette fonction peut se diviser en plusieurs blocs, un bloc corresp
 
 
 - Histogramme sur la durée d'apparition :
-La plupart des apparitions sont courtes et durent entre 10 secondes et 30 minutes (majoritairement entre 1 et 5 minutes). On constate que beaucoup plus d'apparitions ont étées recensées à partir des années 1950.
+La plupart des apparitions sont courtes et durent entre 10 secondes et 30 minutes (majoritairement entre 1 et 5 minutes). On constate que beaucoup plus d'apparitions ont été recensées à partir des années 1950.
 
 - Histogramme des heures d'apparition : On constate que la plupart des observations d'UFO ont lieues en début de soirée, et plus généralement durant la nuit. 
 Ce contexte plus sombre à des heures de fatigue ou de sommeil pourrait expliquer pourquoi plus d'observations sont recensées la nuit.
